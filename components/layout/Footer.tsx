@@ -23,9 +23,9 @@ export default function Footer() {
         <div>
           <h4 className="font-bold mb-6">Services</h4>
           <ul className="space-y-3 text-sm text-gray-400">
-            <li><Link href="/services/content-strategy" className="hover:text-white">Content Strategy</Link></li>
-            <li><Link href="/services/social-media" className="hover:text-white">Social Media</Link></li>
-            <li><Link href="/services/organic-growth" className="hover:text-white">Organic Growth</Link></li>
+            <li><Link href="/services" className="hover:text-white">Content Strategy</Link></li>
+            <li><Link href="/services" className="hover:text-white">Social Media</Link></li>
+            <li><Link href="/services" className="hover:text-white">Organic Growth</Link></li>
           </ul>
         </div>
 
