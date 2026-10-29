@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Instagram, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -10,8 +11,12 @@ export default function Footer() {
           <h3 className="font-bold text-lg mb-4">The Social Lancer</h3>
           <p className="text-gray-400 text-sm mb-6">Click. Connect. Convert.</p>
           <div className="flex gap-4">
-            <a href="https://instagram.com/thesociallancer" className="text-gray-400 hover:text-brand-pink transition-colors"><Instagram size={20} /></a>
-            <a href="https://in.linkedin.com/company/the-social-lancer" className="text-gray-400 hover:text-brand-pink transition-colors"><Linkedin size={20} /></a>
+            <a href="https://instagram.com/thesociallancer" className="text-gray-400 hover:text-brand-pink transition-colors">
+              <FaInstagram size={20} />
+            </a>
+            <a href="https://in.linkedin.com/company/the-social-lancer" className="text-gray-400 hover:text-brand-pink transition-colors">
+              <FaLinkedin size={20} />
+            </a>
           </div>
         </div>
 
@@ -44,7 +49,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between text-xs text-gray-500">
-        <p>© {new Date().getFullYear()} The Social Lancer. All rights reserved.</p>
+        <p>© 2026 The Social Lancer. All rights reserved.</p>
         <div className="flex gap-4 mt-4 md:mt-0">
           <Link href="/legal/privacy" className="hover:text-white">Privacy Policy</Link>
           <Link href="/legal/terms" className="hover:text-white">Terms & Conditions</Link>
