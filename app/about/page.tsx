@@ -2,24 +2,24 @@
 
 import Link from "next/link";
 import { ArrowRight, Target, Eye, Lightbulb, Users, Zap, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
 import { teamData } from "@/lib/data";
 
 // Animation variants
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen overflow-hidden pt-20">
       
       {/* 1. HERO SECTION */}
       <section className="bg-brand-pink py-32 px-6 text-center relative overflow-hidden">

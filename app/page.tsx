@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
 
 // Text reveal variants for the hero
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   visible: (i = 1) => ({
     opacity: 1,
@@ -14,15 +14,15 @@ const container = {
   }),
 };
 
-const child = {
+const child: Variants = {
   visible: { opacity: 1, y: 0, transition: { type: "spring", damping: 20, stiffness: 100 } },
   hidden: { opacity: 0, y: 20 },
 };
 
 // Masked reveal for images
-const imageReveal = {
+const imageReveal: Variants = {
   hidden: { clipPath: "inset(0 100% 0 0)" },
-  visible: { clipPath: "inset(0 0% 0 0)", transition: { duration: 1, ease: [0.77, 0, 0.175, 1] } }
+  visible: { clipPath: "inset(0 0% 0 0)", transition: { duration: 1, ease: [0.77, 0, 0.175, 1] as const } }
 };
 
 export default function Home() {

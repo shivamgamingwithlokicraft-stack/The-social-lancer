@@ -17,7 +17,7 @@ export default function ReviewsPage() {
     setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(formData.entries()) as Record<string, any>;
     
     // Add rating and boolean conversion for checkbox
     data.rating = rating.toString();
@@ -45,7 +45,7 @@ export default function ReviewsPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen pt-20">
       
       {/* 1. HERO SECTION */}
       <section className="bg-brand-pink py-32 px-6 text-center">
