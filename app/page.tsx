@@ -1,147 +1,101 @@
-import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { Mail, MapPin, Instagram, Linkedin, CheckCircle2, Loader2 } from "lucide-react";
+
+export default function ContactPage() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    
+    // Simulate API call (We will connect this to a real email service later)
+    setTimeout(() => {
+      setStatus("success");
+    }, 1500);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
-      
-      {/* 1. HERO SECTION */}
-      <section className="bg-brand-pink py-32 px-6 text-center">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-block bg-brand-black text-white px-4 py-1 rounded-full text-sm font-medium mb-6">
-            The Social Lancer • Digital Marketing Agency
-          </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-brand-black tracking-tight">
-            Click. Connect. <span className="text-brand-accent">Convert.</span>
-          </h1>
-          <p className="text-xl text-brand-black/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Creative ideas. Strategic content. Meaningful digital growth. We help brands build a stronger digital presence through social media strategy and storytelling.
+    <div className="py-24 px-6 bg-brand-offwhite min-h-screen">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+        
+        {/* Contact Info */}
+        <div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Let&apos;s Connect</h1>
+          <p className="text-lg text-gray-600 mb-8">
+            Ready to scale your business? Drop us a message and we&apos;ll get back to you within 24 hours.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/contact" className="bg-brand-accent text-white font-bold py-3 px-8 rounded-md hover:bg-opacity-90 transition flex items-center justify-center gap-2">
-              Let&apos;s Talk <ArrowRight size={20} />
-            </Link>
-            <Link href="/work" className="border-2 border-brand-black font-bold py-3 px-8 rounded-md hover:bg-brand-black hover:text-white transition">
-              Explore Our Work
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. SERVICES PREVIEW */}
-      <section className="py-24 px-6 bg-brand-offwhite">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Core Services</h2>
-              <p className="text-lg text-gray-600">
-                From strategy to execution, we handle the creative and analytical sides of your social media presence.
-              </p>
-            </div>
-            <Link href="/services" className="hidden md:flex items-center gap-2 font-semibold border-b-2 border-brand-accent pb-1 hover:text-brand-accent transition-colors mt-6 md:mt-0">
-              View All Services <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { title: "Content Strategy", desc: "Audience research, content pillars, and monthly calendars." },
-              { title: "Social Media Management", desc: "Scheduling, publishing, and community engagement workflows." },
-              { title: "Reels & Video", desc: "Hook development, scriptwriting, and motion graphics." },
-            ].map((service, i) => (
-              <div key={i} className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                <CheckCircle2 className="text-brand-accent mb-4" size={28} />
-                <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                <p className="text-gray-600 text-sm mb-6">{service.desc}</p>
-                <Link href="/services" className="text-brand-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
-                  Learn More <ArrowRight size={14} />
-                </Link>
-              </div>
-            ))}
-          </div>
           
-          <div className="mt-8 text-center md:hidden">
-            <Link href="/services" className="inline-block font-semibold border-b-2 border-brand-accent pb-1 text-brand-accent">
-              View All Services
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. WORK PREVIEW */}
-      <section className="py-24 px-6 bg-brand-black text-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Featured Work</h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              A glimpse into the campaigns and strategies we build.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Project 1 */}
-            <Link href="/work/ecommerce-brand-launch" className="group relative overflow-hidden rounded-2xl aspect-video bg-gray-800 flex items-end p-8">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-              <div className="relative z-20">
-                <p className="text-brand-pink text-sm font-bold uppercase tracking-wider mb-2">Social Media Campaigns</p>
-                <h3 className="text-2xl font-bold group-hover:text-brand-pink transition-colors">E-Commerce Brand Launch</h3>
+          <div className="space-y-6">
+            <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-brand-pink p-3 rounded-lg"><Mail className="text-brand-black" /></div>
+              <div>
+                <p className="text-sm text-gray-500 font-medium">Email Us</p>
+                <a href="mailto:thesociallancer@gmail.com" className="font-bold hover:text-brand-accent transition-colors">thesociallancer@gmail.com</a>
               </div>
-            </Link>
+            </div>
             
-            {/* Project 2 */}
-            <Link href="/work/b2b-linkedin-growth" className="group relative overflow-hidden rounded-2xl aspect-video bg-gray-800 flex items-end p-8">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-              <div className="relative z-20">
-                <p className="text-brand-pink text-sm font-bold uppercase tracking-wider mb-2">Organic Growth</p>
-                <h3 className="text-2xl font-bold group-hover:text-brand-pink transition-colors">B2B LinkedIn Growth</h3>
+            <div className="flex items-center gap-4 bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-brand-pink p-3 rounded-lg"><MapPin className="text-brand-black" /></div>
+              <div>
+                <p className="text-sm text-gray-500 font-medium">Location</p>
+                <p className="font-bold">Bhopal, Madhya Pradesh, India</p>
               </div>
-            </Link>
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/work" className="inline-flex items-center gap-2 font-bold border-2 border-white hover:border-brand-pink hover:text-brand-pink px-8 py-3 rounded-md transition-colors">
-              View Full Portfolio <ArrowRight size={20} />
-            </Link>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* 4. TEAM PREVIEW */}
-      <section className="py-24 px-6 bg-brand-pink/30">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Meet the People Behind the Work</h2>
-          <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-            Every strong campaign brings together thinkers, creators, strategists, and problem-solvers.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-             {/* Placeholders for team */}
-             {["F", "S", "D", "V"].map((letter, i) => (
-               <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                 <div className="w-16 h-16 bg-brand-pink rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-bold text-brand-black/30">
-                   {letter}
-                 </div>
-                 <h4 className="font-bold text-sm md:text-base">Team Member</h4>
-                 <p className="text-xs md:text-sm text-brand-accent">Designation</p>
-               </div>
-             ))}
-          </div>
-          <Link href="/team" className="inline-flex items-center gap-2 font-semibold border-b-2 border-brand-black pb-1 hover:text-brand-accent hover:border-brand-accent transition-colors">
-            View Full Team Directory <ArrowRight size={16} />
-          </Link>
+        {/* Contact Form */}
+        <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl">
+          {status === "success" ? (
+            <div className="flex flex-col items-center justify-center h-full text-center py-12">
+              <CheckCircle2 size={64} className="text-green-500 mb-6" />
+              <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+              <p className="text-gray-600 mb-6">Thank you for reaching out. We will get back to you shortly.</p>
+              <button onClick={() => setStatus("idle")} className="text-brand-accent font-semibold hover:underline">
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <>
+              <h3 className="text-2xl font-bold mb-6">Send a Project Inquiry</h3>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Full Name</label>
+                    <input required type="text" className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-brand-accent outline-none" placeholder="John Doe" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Business Name</label>
+                    <input type="text" className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-brand-accent outline-none" placeholder="Acme Corp" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Email</label>
+                  <input required type="email" className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-brand-accent outline-none" placeholder="john@example.com" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Services Required</label>
+                  <select className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-brand-accent outline-none bg-white">
+                    <option>Social Media Management</option>
+                    <option>Content Strategy</option>
+                    <option>Reels & Video</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Project Goals</label>
+                  <textarea required rows={4} className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-brand-accent outline-none resize-none" placeholder="Tell us about your brand..."></textarea>
+                </div>
+                <button disabled={status === "loading"} type="submit" className="w-full flex justify-center items-center bg-brand-accent text-white font-bold py-3 rounded-md hover:bg-opacity-90 transition-all mt-4 disabled:opacity-70">
+                  {status === "loading" ? <Loader2 className="animate-spin" size={20} /> : "Submit Inquiry"}
+                </button>
+              </form>
+            </>
+          )}
         </div>
-      </section>
-
-      {/* 5. CTA SECTION */}
-      <section className="py-24 px-6 bg-brand-accent text-white text-center">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to scale your brand?</h2>
-          <p className="text-xl text-white/80 mb-10">Let&apos;s build a digital presence that actually converts.</p>
-          <Link href="/contact" className="inline-block bg-white text-brand-accent font-bold py-4 px-10 rounded-md hover:bg-brand-pink transition-colors">
-            Start a Project Today
-          </Link>
-        </div>
-      </section>
-
+      </div>
     </div>
   );
 }
