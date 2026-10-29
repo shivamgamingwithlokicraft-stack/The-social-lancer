@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Initialize Resend with your API key from the environment variables
-// Note: Make sure you add RESEND_API_KEY to your .env.local file and Vercel!
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -26,10 +22,18 @@ export async function POST(request: Request) {
       );
     }
 
+    // Initialize Resend inside the function to prevent build-time errors
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is missing from environment variables.");
+      return NextResponse.json(
+        { error: "Email service is not configured correctly." },
+        { status: 500 }
+      );
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     // Send the email using Resend
     const data = await resend.emails.send({
-      // IMPORTANT: If you haven't verified a custom domain in Resend yet, 
-      // you MUST use "onboarding@resend.dev" as the "from" address.
       from: "The Social Lancer <onboarding@resend.dev>", 
       to: "thesociallancer@gmail.com", // Your actual email address
       subject: `New Project Inquiry from ${name} (${company})`,

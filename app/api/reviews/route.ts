@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -15,6 +13,13 @@ export async function POST(request: Request) {
     if (permission !== true) {
       return NextResponse.json({ error: "Permission required" }, { status: 400 });
     }
+
+    // Initialize Resend inside the function to prevent build-time errors
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is missing from environment variables.");
+      return NextResponse.json({ error: "Email service is not configured correctly." }, { status: 500 });
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const data = await resend.emails.send({
       from: "The Social Lancer <onboarding@resend.dev>", 
