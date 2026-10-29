@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Mail, MapPin, Instagram, Linkedin, ArrowRight, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, MapPin, ArrowRight, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -104,10 +105,10 @@ export default function ContactPage() {
 
             <Reveal delay={0.3} className="flex gap-4 pt-4">
               <a href="https://instagram.com/thesociallancer" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:text-brand-accent font-semibold transition-all">
-                <Instagram size={20} /> Instagram
+                <FaInstagram size={20} /> Instagram
               </a>
               <a href="https://in.linkedin.com/company/the-social-lancer" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:text-brand-accent font-semibold transition-all">
-                <Linkedin size={20} /> LinkedIn
+                <FaLinkedin size={20} /> LinkedIn
               </a>
             </Reveal>
           </div>
